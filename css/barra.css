@@ -1,0 +1,75 @@
+.center {
+	position: relative;
+	height: 3rem;
+	margin: 1rem 1rem 0 0;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.clear {
+	clear: both;
+}
+
+
+progress[value] {
+	/* Elimino la apariencia por defecto */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	/* Quito el borde que aparece en Firefox */
+	border: none;
+	/* A�ado mis propios estilos */
+	max-width:95%;
+	width: 70rem;
+	height: 1rem;
+	/* 	Estos estilos solo se aplicaran al fondo de la barra en mozilla */
+	overflow: hidden;
+	border: 1px inset #666;
+	background-color: #D8D8D8;
+	border-radius: 20px;
+}
+
+.progress {
+	width: 100%;
+	float: left;
+	
+	margin-bottom: 20px;
+}
+
+.progress span {
+	font-weight: bold;
+}
+
+/* Compatibilidad de color en Firefox, Chrome y Safari */
+
+progress::-moz-progress-bar {
+	background: #057f9e;
+	background: rgb(75, 189, 255);
+	background: -moz-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgb(75, 189, 255)), color-stop(100%, #057f9e));
+	background: -webkit-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: -o-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: -ms-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: linear-gradient(to right, rgb(75, 189, 255) 0%, #057f9e 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a', GradientType=1);
+	border-radius: 20px;
+}
+
+progress::-webkit-progress-value {
+	background: #FF8000;
+	background: rgb(75, 189, 255);
+	background: -moz-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgb(75, 189, 255)), color-stop(100%, #057f9e));
+	background: -webkit-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: -o-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: -ms-linear-gradient(left, rgb(75, 189, 255) 0%, #057f9e 100%);
+	background: linear-gradient(to right, rgb(75, 189, 255) 0%, #057f9e 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a', GradientType=1);
+	border-radius: 20px;
+}
+
+progress::-webkit-progress-bar {
+	background-color: #D8D8D8;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+	border-radius: 20px;
+}
