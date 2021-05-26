@@ -70,21 +70,10 @@
           </div>
         </div>
         <!--botones-->
-        <div class="numeros">
-          <div class="contenido-numeros der">
-            <h2 class="negro">€89,914</h2>
-            <p>of €100,000 backed</p>
-            <p class="borde"></p>
-          </div>
-          <div class="contenido-numeros centro">
-            <h2 class="negro">5,007</h2>
-            <p>total backers</p>
-            <p class="borde"></p>
-          </div>
-          <div class="contenido-numeros izq">
-            <h2 class="negro">56</h2>
-            <p>days left</p>
-          </div>
+        <div class="numeros" id="comntenedor_numeros">
+         
+
+          
         </div>
         <!--numeros-->
         <div class="center">
@@ -118,7 +107,7 @@
               <p class="negro n-g bold">101</p>
               <p>left</p>
             </div>
-            <button class="btn  btn-p"  onclick="mostrarAporte('bamboo')" value="bamboo">Select Reward</button>
+            <button class="btn  btn-p" onclick="mostrarAporte()" value="bamboo">Select Reward</button>
           </div>
         </div>
         <div class="contenido-reward">
@@ -133,7 +122,7 @@
               <p class="negro n-g bold"> 64</p>
               <p>left</p>
             </div>
-            <button class="btn  btn-p"  onclick="mostrarAporte('black')" value="black">Select Reward</button>
+            <button class="btn  btn-p" onclick="mostrarAporte()" value="black">Select Reward</button>
           </div>
         </div>
         <div class="contenido-reward oculto" id="oculto">
@@ -148,7 +137,7 @@
               <p class="negro n-g bold">0</p>
               <p>left</p>
             </div>
-            <button class="btn btn-gris btn-p"  onclick="mostrarAporte('mahogany')" value="mahogany">Out of Stock</button>
+            <button class="btn btn-gris btn-p" onclick="mostrarAporte()" value="mahogany">Out of Stock</button>
           </div>
         </div>
       </div>
@@ -165,25 +154,26 @@
       <div class="contenido-modal-start">
 
         <div class="input-radio borde-gris">
-          <input type="radio" id="no_reward" name="pledge" value="no_reward">
+          <input type="radio" id="no_reward" onclick="mostrarCheck()" name="pledge" value="no_reward">
           <label class="m-cyan bold" for="no_reward">Pledge with no reward</label>
           <p>Choose to support us without a reward if you simply believe in our project. As a backer,
             you will be signed up to receive product updates via email.</p>
           <div class="pledge p-no_reward invisible">
             <p>Enter tour pledge</p>
             <div class="botones-r">
-              <p><button type="submit" class="btn  btn-p" href="#">Continue</button></p>
+              <input type="hidden" name="aportar" value="1">
+              <p><button type="button" onclick="enviarAporte()" class="btn  btn-p" value="1">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
         </div>
         <!--input-radio-->
 
-        <div class="input-radio borde-gris" method="POST" action="#">
+        <div class="input-radio borde-gris">
           <div class="input">
             <p>
-              <input type="radio" id="bamboo" name="pledge" value="bamboo">
-              <label class="negro bold" id for="bamboo"> Bamboo Stand</label>
+              <input type="radio" id="bamboo" onclick="mostrarCheck()" name="pledge" value="bamboo">
+              <label class="negro bold" for="bamboo"> Bamboo Stand</label>
             </p>
             <p class="m-cyan bold">Pledge $25 or more</p>
             <p class="arriba"><span class="negro bold t-g">101</span> left</p>
@@ -195,8 +185,9 @@
           <div class="pledge p-bamboo invisible">
             <p>Enter tour pledge</p>
             <div class="botones-r">
-              <p><input tipe="text" class="btn-r-p negro" placeholder="$"></p>
-              <p><button type="submit" class="btn  btn-p">Continue</button></p>
+              <p><input tipe="text" class="btn-r-p negro" id="aporte_bamboo" name="aporte_bamboo" value=""></p>
+              <input type="hidden" id="aportar_bamboo" name="aportar" value="1">
+              <p><button type="button" onclick="enviarAporte()" class="btn  btn-p">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
@@ -205,7 +196,7 @@
         <div class="input-radio borde-gris">
           <div class="input">
             <p>
-              <input type="radio" id="black" name="pledge" value="black">
+              <input type="radio" id="black" onclick="mostrarCheck()" name="pledge" value="black">
               <label class="negro bold" for="black"> Black Edition Stand</label>
             </p>
             <p class="m-cyan bold">Pledge $75 or more</p>
@@ -219,8 +210,9 @@
           <div class="pledge p-black invisible">
             <p>Enter tour pledge</p>
             <div class="botones-r">
-              <p><input tipe="text" class="btn-r-p negro" placeholder="$"></p>
-              <p><button type="submit" class="btn  btn-p" >Continue</button></p>
+              <p><input tipe="text" class="btn-r-p" id="aporte_black" name="aporte_black" value=""></p>
+              <input type="hidden" id="aportar_black" name="aportar" value="1">
+              <p><button type="button" onclick="enviarAporte()" class="btn  btn-p">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
@@ -228,16 +220,16 @@
         <!--input-radio-->
 
         <div class="input-radio oculto borde-gris" id="mahogany">
-          <input type="radio" id="mahogany" name="pledge" value="mahogany">
+          <input type="radio" id="mahogany" name="pledge" value="mahogany" disabled>
           <label class="negro bold" for="mahogany">Mahogany Special Edition </label>
           <p>Choose to support us without a reward if you simply believe in our project. As a backer,
             you will be signed up to receive product updates via email.</p>
-            <p class="abajo"><span class="negro bold t-g">0</span> left</p>
+          <p class="abajo"><span class="negro bold t-g">0</span> left</p>
 
           <div class="pledge p-mahogany invisible">
             <p>Enter tour pledge</p>
             <div class="botones-r">
-              <p><button type="submit" class="btn  btn-p" >Continue</button></p>
+              <p><button type="button" class="btn  btn-p">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
@@ -247,7 +239,7 @@
     </form>
     <!-- Selection modal start -->
 
-    <div class="gracias">
+    <div class="gracias invisible">
       <p class="text-center"><svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fill-rule="evenodd">
             <circle fill="#3CB3AB" cx="32" cy="32" r="32" />
@@ -259,7 +251,7 @@
         worldwide. You will get
         an email once our campaign is completed.
       </p>
-      <p class="text-center m-t-3"><a class="btn  btn-p  m-b-3" href="#">Got it!</a></p>
+      <p class="text-center m-t-3"><a class="btn  btn-p  m-b-3" onclick="cerrarGracias()">Got it!</a></p>
     </div>
 
 
@@ -271,7 +263,7 @@
   <script src="/js/main.js"></script>
   <script src="/js/barra.js"></script>
 
- 
+
 </body>
 
 </html>
