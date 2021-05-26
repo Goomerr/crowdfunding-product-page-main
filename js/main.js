@@ -6,10 +6,7 @@ const mahoganyReward = document.querySelector('#mahogany');
 const inputRadio = document.aportes.pledge;
 const botones = document.getElementsByTagName('button');
 const botonesPagar = document.querySelectorAll('.pledge');
-console.log(botonesPagar)
-console.log(inputRadio[0].value);
-console.log(botones)
-console.log(aportes[1].value)
+
 function scroll() {
   scrollOptions = {
     top: 90,
