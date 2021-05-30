@@ -1,22 +1,33 @@
-//variable base de datos
-let DB;
-
-
 const book = document.querySelector('#bookmarked');
 const der = document.querySelector('#der');
-const formulario = document.querySelector('#aportes');
+const formulario = document.querySelector('#form');
 const mahogany = document.querySelector('#oculto');
 const mahoganyReward = document.querySelector('#mahogany');
 const inputRadio = document.aportes.pledge;
-const aportar = document.aportes.aportar;
+const patrocinar = document.querySelector('#patrocinador');
 const botonesPagar = document.querySelectorAll('.pledge');
 const gracias = document.querySelector('.gracias');
 const divNumeros = document.querySelector('#comntenedor_numeros');
-// const dinero = document.querySelector('#dinero_aportado');
-// const patrocinadores = document.querySelector('#patro');
-// const dias = document.querySelector('#dias_restantes');
 const aporteBamboo = document.querySelector('#aporte_bamboo');
 const aporteBlack = document.querySelector('#aporte_black');
+
+let recaudacion = [];
+let patrocinadores = [];
+
+//cuenta atrás variables
+const end = new Date('09/31/2021 12:00 AM');
+
+const _second = 1000;
+const _minute = _second * 60;
+const _hour = _minute * 60;
+const _day = _hour * 24;
+let timer;
+let now = new Date();
+let distance = end - now;
+let days = Math.floor(distance / _day);
+let hours = Math.floor((distance % _day) / _hour);
+let minutes = Math.floor((distance % _hour) / _minute);
+let seconds = Math.floor((distance % _minute) / _second);
 
 
 function scroll() {
@@ -29,53 +40,72 @@ function scroll() {
 }
 
 window.onload = function () {
-  crearBD();
-  conectarDB();
+  cuentaAtras();
+  mostrarHtml();
   bookmarked();
-  animateprogress("#barra", 80);
-  eventListener();
+
+  // eventListener();
+  // mostrarResultados();
+  //crearHtml();
   //actualizar total
 
-  //formulario.addEventListener('submit', enviarAporte);
-  //enviarAporte();
+
 }
-//Conectar DB
-function conectarDB() {
-  // ABRIR CONEXIÓN EN LA BD:
-
-  let abrirConexion = window.indexedDB.open('dinero', 1);
-
-  // si hay un error, lanzarlo
-  abrirConexion.onerror = function () {
-    console.log('Hubo un error');
-  };
-
-  // si todo esta bien, asignar a database el resultado
-  abrirConexion.onsuccess = function () {
-    // guardamos el resultado
-    DB = abrirConexion.result;
-  };
+function guardarPatros() {
+  patrocinadores = [...patrocinadores, parseInt(patrocinar.value)];
+  localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
+  mostrarHtml();
 }
 
-function eventListener() {
-  aporteBamboo.addEventListener('change', aporteDinero);
-  aporteBlack.addEventListener('change', aporteDinero);
-}
+function guardarDinero() {
+  let bamboo = aporteBamboo.value;
+  let black = aporteBlack.value;
+  let total = bamboo + black;
+  if (total === '') {
+    alert('Ingresa una cantidad');
+    return;
+  }
+  patrocinadores = [...patrocinadores, parseInt(patrocinar.value)];
+  localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
+  recaudacion = [...recaudacion, parseInt(total)];
 
-const dineroObj = {
-  aportar: 0,
-  aporte_bamboo: '',
-  aporte_black: '',
-  total: ''
+  localStorage.setItem('total', JSON.stringify(recaudacion));
+  formulario.reset();
+  cerrarAporte();
+  mostrarHtml();
+  cerrarCheck();
+  cambiarColor()
 }
 
 
 
-function aporteDinero(e) {
-  // console.log(e.target.name);
-  dineroObj[e.target.name] = parseInt(e.target.value);
+function mostrarHtml() {
+  cerrarCheck();
+  cerrarAporte();
+  recaudacion = JSON.parse(localStorage.getItem('total'));
+  patrocinadores = JSON.parse(localStorage.getItem('patrocinadores'));
+  let progresoBarra = recaudacion.reduce((c, d) => c + d, 0) / 1000;
+  animateprogress("#barra", progresoBarra);
+
+  divNumeros.innerHTML = `
+            <div class="contenido-numeros der">
+           <h2 class="negro" id="dinero_aportado">$ ${recaudacion.reduce((a, b) => a + b, 0)}</h2>
+           <p>of $100,000 backed</p>
+           <p class="borde"></p>
+         </div>
+         <div class="contenido-numeros centro">
+           <h2 class="negro" id="patro">${patrocinadores.reduce((c, d) => c + d, 0)}</h2>
+           <p>total backers</p>
+           <p class="borde"></p>
+           </div>
+           <div class="contenido-numeros izq">
+           <h2 class="negro" id="dias_restantes">${days}</h2>
+           <p>days left</p>
+         </div>
+           `;
 
 }
+
 
 function bookmarked() {
 
@@ -114,41 +144,12 @@ function cerrarGracias() {
   botonesPagar[0].classList.add('invisible');
   botonesPagar[1].classList.add('invisible');
   botonesPagar[2].classList.add('invisible');
-  actualizarTotalBD();
-  actualizarDatos();
+  mostrarResultados();
   cerrarAporte();
   cambiarColor();
 }
 
-function enviarAporte() {
-  dineroObj.aportar = parseInt(aportar[0].value);
 
-  //Insertar registros en la BD de indexDB
-  const transaction = DB.transaction(['dinero'], 'readwrite');
-
-  dineroObj.id = Date.now();
-
-
-  //Habilitar objectStore
-  const objectStore = transaction.objectStore('dinero');
-
-  //Insertar en la BD
-  objectStore.add(dineroObj);
-
-  transaction.oncomplete = function () {
-    console.log('Dinero agregado');
-    // Mostrar mensaje de que todo esta bien...
-    console.log('Se agregó correctamente');
-  }
-  mostrarGracias();
-}
-function actualizarDatos() {
-  // let total = dineroObj.aporte_black + dineroObj.aporte_bamboo;
-  // console.log(total);
-  // dinero.textContent = `$ ${total}`;
-  obtenerDatos();
-  formulario.reset();
-}
 
 function mostrarAporte() {
   formulario.classList.remove('invisible');
@@ -168,145 +169,37 @@ function mostrarCheck() {
     botonesPagar[2].classList.add('invisible');
     botonesPagar[0].classList.remove('invisible');
   }
-};
+}
+function cerrarCheck() {
+  botonesPagar[0].classList.add('invisible');
+  botonesPagar[1].classList.add('invisible');
+  botonesPagar[2].classList.add('invisible');
+}
+
 function cerrarAporte() {
+  cerrarCheck();
   formulario.classList.add('invisible');
 }
 
+function cuentaAtras() {
 
-function crearBD() {
-  //Crear la base de datos en versión 1.0
-  const crearBD = window.indexedDB.open('dinero', 1);
+  function showRemaining() {
+    if (distance < 0) {
 
-  //Si hay un error
-  crearBD.onerror = function () {
-    console.log('Hubo un error');
+      clearInterval(timer);
+      document.getElementById('dias_restantes').innerHTML = 'EXPIRED!';
+
+      return;
+    }
+    //document.getElementById('dias_restantes').innerHTML = days;
+    // document.getElementById('dias_restantes').innerHTML += hours + ' horas, ';
+    // document.getElementById('dias_restantes').innerHTML += minutes + ' minutos y ';
+    // document.getElementById('dias_restantes').innerHTML += seconds + ' segundos';
   }
 
-  //Si se crea correctamente
-  crearBD.onsuccess = function () {
-    console.log('Base de Datos Creada');
-    DB = crearBD.result;
-
-    //Mostrar citas al cargar el documento( cuando indexDB ya esta listo)
-    actualizarDatos();
-  }
-  //Configuración de la BD
-  //Definir el schema
-  crearBD.onupgradeneeded = function (e) {
-    const db = e.target.result;
-    const objectStore = db.createObjectStore('dinero', {
-      keyPath: 'id',
-      autoIncrement: true
-    });
-    //Definir las columnas nombre, keyPath y opciones
-
-    objectStore.createIndex('aportar', 'aportar', {
-      unique: false
-    });
-    objectStore.createIndex('aporte_bamboo', 'aporte_bamboo', {
-      unique: false
-    });
-    objectStore.createIndex('aporte_black', 'aporte_black', {
-      unique: false
-    });
-
-    objectStore.createIndex('total', 'total', {
-      unique: false
-    });
-
-    console.log('DB creada y lista');
-  }
-
-
+  timer = setInterval(showRemaining, 1000);
 }
 
-function obtenerDatos() {
-  const abrirConexion = window.indexedDB.open('dinero', 1);
-
-  abrirConexion.onerror = () => {
-    console.log('Hubo un error');
-  }
-
-  abrirConexion.onsuccess = function () {
-    DB = abrirConexion.result;
-    //Leer el contenido de la BD indexDB
-    const objectStore = DB.transaction('dinero').objectStore('dinero');
-
-    //openCursor recorre los resultados de la BD
-    objectStore.openCursor().onsuccess = function (e) {
-      const cursor = e.target.result;
-      console.log(cursor.value);
-      if (cursor) {
-        const {
-          aportar,
-          aporte_bamboo,
-          aporte_black,
-          total
-        } = cursor.value;
-        divNumeros.innerHTML = `
-        <div class="contenido-numeros der">
-       <h2 class="negro" id="dinero_aportado">$ ${total}</h2>
-       <p>of €100,000 backed</p>
-       <p class="borde"></p>
-     </div>
-     <div class="contenido-numeros centro">
-       <h2 class="negro" id="patro">${aportar}</h2>
-       <p>total backers</p>
-       <p class="borde"></p>
-       </div>
-       <div class="contenido-numeros izq">
-       <h2 class="negro" id="dias_restantes">56</h2>
-       <p>days left</p>
-     </div>
-       `;
-
-        cursor.continue();
-      } else {
-
-      }
-
-    }
-  }
-}
-function actualizarTotalBD() {
-  const abrirConexion = window.indexedDB.open('dinero', 1);
-
-  abrirConexion.onerror = () => {
-    console.log('Hubo un error');
-  }
-  abrirConexion.onsuccess = function () {
-    DB = abrirConexion.result;
-    //Leer el contenido de la BD indexDB
-    const transaction = DB.transaction(['dinero'], 'readwrite');
-    const objectStore = transaction.objectStore('dinero');
 
 
 
-    let aportarAct = aportar;
-    let bambooAct = aporte_bamboo;
-    let blackAct = aporte_black;
-    let totalAct = bambooAct + blackAct;
-    //     cursor.continue();
-    //   }
-    // }
-    obtenerDatos();
-    const dineroObjActualizado = {
-      aportar: aportarAct,
-      aporte_bamboo: bambooAct,
-      aporte_black: blackAct,
-      total: totalAct
-    }
-
-
-    objectStore.put(dineroObjActualizado);
-    transaction.oncomplete = function () {
-      cerrarGracias
-    }
-    transaction.onerror = function () {
-      console.log('error');
-    }
-
-
-  }
-}
