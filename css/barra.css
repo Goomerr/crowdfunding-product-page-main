@@ -19,7 +19,7 @@ progress[value] {
 	/* Quito el borde que aparece en Firefox */
 	border: none;
 	/* A�ado mis propios estilos */
-	max-width:95%;
+	max-width:70%;
 	width: 70rem;
 	height: 1rem;
 	/* 	Estos estilos solo se aplicaran al fondo de la barra en mozilla */
