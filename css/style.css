@@ -306,15 +306,19 @@ header {
 }
 
 .gracias {
-    display: none;
     position: absolute;
     padding: 2rem;
-    top: 10%;
+   top: 250px;
     width: 50%;
-    height: 24rem;
+    height: 25rem;
     background-color: white;
     border-radius: 1rem;
     border: 1px solid #ccc;
+}
+@media (max-width: 411px){
+    .gracias{
+        height: 30rem;
+    }
 }
 
 .modal-start {
@@ -332,9 +336,11 @@ header {
 .modal-start h4 {
     margin-bottom: 0;
 }
-p.cierre{
+
+p.cierre {
     cursor: pointer;
 }
+
 .input-radio {
     margin: 2rem auto;
     border-radius: .5rem;
@@ -406,4 +412,16 @@ p.cierre{
 
 .invisible {
     display: none;
+}
+
+.pledge input {
+    background-image: url(/images/icono_dolar.png);
+    background-position: center left;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    padding: .8rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: black;
+    text-align: center;
 }
