@@ -25,9 +25,9 @@ let timer;
 let now = new Date();
 let distance = end - now;
 let days = Math.floor(distance / _day);
-let hours = Math.floor((distance % _day) / _hour);
-let minutes = Math.floor((distance % _hour) / _minute);
-let seconds = Math.floor((distance % _minute) / _second);
+// let hours = Math.floor((distance % _day) / _hour);
+// let minutes = Math.floor((distance % _hour) / _minute);
+// let seconds = Math.floor((distance % _minute) / _second);
 
 
 function scroll() {
@@ -181,13 +181,13 @@ function cerrarAporte() {
   formulario.classList.add('invisible');
 }
 
-function cuentaAtras() {
 
-  function showRemaining() {
+
+  function cuentaAtras() {
     if (distance < 0) {
 
       clearInterval(timer);
-      document.getElementById('dias_restantes').innerHTML = 'EXPIRED!';
+      document.getElementById('dias_restantes').innerHTML = 'FINAL!';
 
       return;
     }
@@ -197,8 +197,8 @@ function cuentaAtras() {
     // document.getElementById('dias_restantes').innerHTML += seconds + ' segundos';
   }
 
-  timer = setInterval(showRemaining, 1000);
-}
+  timer = setInterval(cuentaAtras, 1000);
+
 
 
 
