@@ -15,7 +15,7 @@
   <title>Frontend Mentor | Crowdfunding product page</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
+  <!-- <style>
     .attribution {
       font-size: 11px;
       text-align: center;
@@ -24,7 +24,7 @@
     .attribution a {
       color: hsl(228, 45%, 44%);
     }
-  </style>
+  </style> -->
 </head>
 
 <body>
@@ -71,9 +71,9 @@
         </div>
         <!--botones-->
         <div class="numeros" id="comntenedor_numeros">
-         
 
-          
+
+
         </div>
         <!--numeros-->
         <div class="center">
@@ -145,7 +145,7 @@
     </div>
     <!--principal-->
 
-    <form class="contenedor modal-start invisible" id="aportes" name="aportes">
+    <form class="contenedor modal-start invisible" id="form" name="aportes" method="POST" action="#">
       <div class="titulo">
         <h4 class="negro bold t-g">Back this project</h4>
         <p class="cierre negro t-g bold" onclick="cerrarAporte()">X</p>
@@ -161,8 +161,8 @@
           <div class="pledge p-no_reward invisible">
             <p>Enter tour pledge</p>
             <div class="botones-r">
-              <input type="hidden" name="aportar" value="1">
-              <p><button type="button" onclick="enviarAporte()" class="btn  btn-p" value="1">Continue</button></p>
+              <input type="hidden" id="patrocinador" name="aportar" value="1">
+              <p><button type="button" onclick="guardarPatros()" class="btn  btn-p">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
@@ -186,8 +186,8 @@
             <p>Enter tour pledge</p>
             <div class="botones-r">
               <p><input tipe="text" class="btn-r-p negro" id="aporte_bamboo" name="aporte_bamboo" value=""></p>
-              <input type="hidden" id="aportar_bamboo" name="aportar" value="1">
-              <p><button type="button" onclick="enviarAporte()" class="btn  btn-p">Continue</button></p>
+              <input type="hidden" id="aportar_bamboo" name="aportar" value="">
+              <p><button type="button" onclick="guardarDinero()" class="btn  btn-p">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
@@ -211,8 +211,8 @@
             <p>Enter tour pledge</p>
             <div class="botones-r">
               <p><input tipe="text" class="btn-r-p" id="aporte_black" name="aporte_black" value=""></p>
-              <input type="hidden" id="aportar_black" name="aportar" value="1">
-              <p><button type="button" onclick="enviarAporte()" class="btn  btn-p">Continue</button></p>
+              <input type="hidden" id="aportar_black" name="aportar" value="">
+              <p><button type="button" onclick="guardarDinero()" class="btn  btn-p">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
@@ -229,7 +229,7 @@
           <div class="pledge p-mahogany invisible">
             <p>Enter tour pledge</p>
             <div class="botones-r">
-              <p><button type="button" class="btn  btn-p">Continue</button></p>
+              <p><button type="button" onclick="guardarDinero()" class="btn  btn-p">Continue</button></p>
             </div>
           </div>
           <!--pledge-->
