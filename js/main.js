@@ -51,6 +51,7 @@ function guardarPatros() {
   mostrarGracias();
   mostrarHtml();
   cerrarCheck();
+  cambiarColor();
 }
 
 function guardarDinero() {
