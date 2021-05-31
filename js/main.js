@@ -129,7 +129,7 @@ function cambiarColor() {
       <circle fill=" hsl(0, 0%, 48%)" cx="28" cy="28" r="28" />
       <path fill="#fff" d="M23 19v18l5-5.058L33 37V19z" />
     </g>
-  </svg></p> <span><a class="gris" id="bookmarked"  href="#">Bookmarked</a></span></div>
+  </svg></p> <span><a class="gris" id="bookmarked"  href="#">Bookmark</a></span></div>
     `;
 }
 
