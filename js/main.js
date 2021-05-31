@@ -44,17 +44,13 @@ window.onload = function () {
   mostrarHtml();
   bookmarked();
 
-  // eventListener();
-  // mostrarResultados();
-  //crearHtml();
-  //actualizar total
-
-
 }
 function guardarPatros() {
   patrocinadores = [...patrocinadores, parseInt(patrocinar.value)];
   localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
+
   mostrarHtml();
+  cerrarCheck();
 }
 
 function guardarDinero() {
@@ -66,9 +62,12 @@ function guardarDinero() {
     return;
   }
   patrocinadores = [...patrocinadores, parseInt(patrocinar.value)];
-  localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
   recaudacion = [...recaudacion, parseInt(total)];
-
+  if (recaudacion === '' || patrocinadores === '') {
+    recaudacion = 0;
+    patrocinadores = 0;
+  }
+  localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
   localStorage.setItem('total', JSON.stringify(recaudacion));
   formulario.reset();
   cerrarAporte();
@@ -171,6 +170,7 @@ function mostrarCheck() {
   }
 }
 function cerrarCheck() {
+  inputRadio[0].checked = false;
   botonesPagar[0].classList.add('invisible');
   botonesPagar[1].classList.add('invisible');
   botonesPagar[2].classList.add('invisible');
@@ -183,21 +183,21 @@ function cerrarAporte() {
 
 
 
-  function cuentaAtras() {
-    if (distance < 0) {
+function cuentaAtras() {
+  if (distance < 0) {
 
-      clearInterval(timer);
-      document.getElementById('dias_restantes').innerHTML = 'FINAL!';
+    clearInterval(timer);
+    document.getElementById('dias_restantes').innerHTML = 'FINAL!';
 
-      return;
-    }
-    //document.getElementById('dias_restantes').innerHTML = days;
-    // document.getElementById('dias_restantes').innerHTML += hours + ' horas, ';
-    // document.getElementById('dias_restantes').innerHTML += minutes + ' minutos y ';
-    // document.getElementById('dias_restantes').innerHTML += seconds + ' segundos';
+    return;
   }
+  //document.getElementById('dias_restantes').innerHTML = days;
+  // document.getElementById('dias_restantes').innerHTML += hours + ' horas, ';
+  // document.getElementById('dias_restantes').innerHTML += minutes + ' minutos y ';
+  // document.getElementById('dias_restantes').innerHTML += seconds + ' segundos';
+}
 
-  timer = setInterval(cuentaAtras, 1000);
+timer = setInterval(cuentaAtras, 1000);
 
 
 
