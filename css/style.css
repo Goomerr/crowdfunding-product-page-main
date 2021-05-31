@@ -43,7 +43,9 @@ a:hover {
 .negro {
     color: black;
 }
-
+gris{
+    color:  hsl(0, 0%, 48%);
+}
 .btn-gris {
     background-color: hsl(0, 0%, 48%) !important;
 }
@@ -135,7 +137,7 @@ a:hover {
 header {
     color: white;
     max-width: 1444px;
-    height: 20rem;
+    height: 25rem;
     background-image: url("/images/image-hero-desktop.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -167,7 +169,7 @@ header {
     border-radius: 1rem;
     padding: .5rem;
     background-color: white;
-    width: min(70%, 72rem);
+    width: min(60%, 60rem);
 }
 
 .logo {
@@ -341,7 +343,9 @@ header {
 p.cierre {
     cursor: pointer;
 }
-
+p.cierre:hover{
+    color: black;
+}
 .input-radio {
     margin: 2rem auto;
     border-radius: .5rem;
@@ -374,8 +378,14 @@ p.cierre {
 
 @media (max-width: 540px) {
     .botones {
-        display: flex;
-        justify-content: center;
+        display: block;
+        text-align: center;
+    }
+    .botones .der{
+        display: block;
+    }
+    #bookmarked{
+        display: none;
     }
     .modal-start {
         font-size: .8rem;
