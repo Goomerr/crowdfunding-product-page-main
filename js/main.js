@@ -48,7 +48,7 @@ window.onload = function () {
 function guardarPatros() {
   patrocinadores = [...patrocinadores, parseInt(patrocinar.value)];
   localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
-
+mostrarGracias();
   mostrarHtml();
   cerrarCheck();
 }
@@ -70,7 +70,8 @@ function guardarDinero() {
   localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
   localStorage.setItem('total', JSON.stringify(recaudacion));
   formulario.reset();
-  cerrarAporte();
+  mostrarGracias();
+ 
   mostrarHtml();
   cerrarCheck();
   cambiarColor()
