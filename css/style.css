@@ -124,13 +124,6 @@ a:hover {
 
 /*Header*/
 
-.barra {
-    padding-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 @media (max-width: 411px) {
     .navegacion a {
         display: block;
@@ -140,8 +133,6 @@ a:hover {
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
     color: white;
     max-width: 1444px;
     height: 20rem;
@@ -151,6 +142,15 @@ header {
     background-position: center center;
 }
 
+.barra {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.barra h2{
+    margin-left: 2rem;
+}
 /*contenido*/
 
 .container {
@@ -308,15 +308,16 @@ header {
 .gracias {
     position: absolute;
     padding: 2rem;
-   top: 250px;
+    top: 250px;
     width: 50%;
     height: 25rem;
     background-color: white;
     border-radius: 1rem;
     border: 1px solid #ccc;
 }
-@media (max-width: 411px){
-    .gracias{
+
+@media (max-width: 411px) {
+    .gracias {
         height: 30rem;
     }
 }
@@ -415,7 +416,7 @@ p.cierre {
 }
 
 .pledge input {
-    background-image: url(/images/icono_dolar.png);
+    background-image: url("/images/icono_dolar.png");
     background-position: center left;
     background-repeat: no-repeat;
     background-size: 80%;
