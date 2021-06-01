@@ -71,7 +71,9 @@ function guardarDinero() {
   localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
   localStorage.setItem('total', JSON.stringify(recaudacion));
   formulario.reset();
+  
   mostrarGracias();
+  
   mostrarHtml();
   cerrarCheck();
 }
@@ -80,7 +82,7 @@ function guardarDinero() {
 
 function mostrarHtml() {
   cerrarCheck();
-  cerrarAporte();
+  // cerrarAporte();
   recaudacion = JSON.parse(localStorage.getItem('total'));
   patrocinadores = JSON.parse(localStorage.getItem('patrocinadores'));
   let progresoBarra = recaudacion.reduce((c, d) => c + d, 0) / 1000;
@@ -135,22 +137,28 @@ function cambiarColor() {
 
 
 function mostrarGracias() {
+oscurecerFondo();
+
   gracias.classList.remove('invisible');
 }
 
 function cerrarGracias() {
+  cerrarAporte();
   gracias.classList.add('invisible');
   botonesPagar[0].classList.add('invisible');
   botonesPagar[1].classList.add('invisible');
   botonesPagar[2].classList.add('invisible');
+  removeFondoOscuro();
   mostrarResultados();
-  cerrarAporte();
+  
   cambiarColor();
+
 }
 
 
 
 function mostrarAporte() {
+  oscurecerFondo();
   formulario.classList.remove('invisible');
   scroll();
   mostrarCheck();
@@ -177,8 +185,11 @@ function cerrarCheck() {
 }
 
 function cerrarAporte() {
+ mostrarGracias();
   cerrarCheck();
   formulario.classList.add('invisible');
+  removeFondoOscuro();
+ 
 }
 
 
@@ -199,7 +210,20 @@ function cuentaAtras() {
 
 timer = setInterval(cuentaAtras, 1000);
 
+const overlay = document.createElement('div');
+const imagen = document.createElement('img');
+function oscurecerFondo() {
+  overlay.appendChild(imagen);
+  overlay.classList.add('overlay');
+  const body = document.querySelector('body');
+  body.appendChild(overlay);
 
 
+}
 
+function removeFondoOscuro(){
+ 
+ overlay.remove();
+
+}
 
