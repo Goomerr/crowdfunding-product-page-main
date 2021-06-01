@@ -71,9 +71,9 @@ function guardarDinero() {
   localStorage.setItem('patrocinadores', JSON.stringify(patrocinadores));
   localStorage.setItem('total', JSON.stringify(recaudacion));
   formulario.reset();
-  
+
   mostrarGracias();
-  
+
   mostrarHtml();
   cerrarCheck();
 }
@@ -137,7 +137,7 @@ function cambiarColor() {
 
 
 function mostrarGracias() {
-oscurecerFondo();
+  oscurecerFondo();
 
   gracias.classList.remove('invisible');
 }
@@ -149,8 +149,6 @@ function cerrarGracias() {
   botonesPagar[1].classList.add('invisible');
   botonesPagar[2].classList.add('invisible');
   removeFondoOscuro();
-  mostrarResultados();
-  
   cambiarColor();
 
 }
@@ -185,11 +183,11 @@ function cerrarCheck() {
 }
 
 function cerrarAporte() {
- mostrarGracias();
+
   cerrarCheck();
   formulario.classList.add('invisible');
   removeFondoOscuro();
- 
+
 }
 
 
@@ -221,9 +219,9 @@ function oscurecerFondo() {
 
 }
 
-function removeFondoOscuro(){
- 
- overlay.remove();
+function removeFondoOscuro() {
+
+  overlay.remove();
 
 }
 
