@@ -27,43 +27,63 @@
   </style> -->
 </head>
 
-<body>
+<body >
+  
   <header class="header contenedor">
     <div class="contenedor">
       <div class="barra">
-        <h2 >croudfund</h2>
+        <h2>croudfund</h2>
         <nav class="navegacion">
-          <a href="">About</a>
+          <a href=""> About</a>
           <a href="">Discover</a>
           <a href="">Get Started</a>
         </nav>
       </div>
+      <div class="menu_barras">
+        <div class="hamburger">
+          <div class="_layer -top"></div>
+          <div class="_layer -mid"></div>
+          <div class="_layer -bottom"></div>
+        </div>
+
+      </div>
     </div>
+
   </header>
 
   <main class="container">
+    <nav class="menuppal menu_movil">
+      <ul>
+        <li><a href="#">About </a></li>
+        <li><a href="#">Discover </a></li>
+        <li><a href="#">Get Started</a></li>
+      </ul>
+    </nav>
+
     <div class="principal">
+
+
       <div class="logo text-center">
-        <p><svg width="56" height="56" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" fill-rule="evenodd">
-              <circle fill="#000" cx="28" cy="28" r="28" />
-              <g fill-rule="nonzero">
-                <path
-                  d="M15.565 28.565a1.93 1.93 0 012.606-.113l.122.113 10.142 10.142a1.93 1.93 0 01-2.606 2.84l-.122-.112-10.142-10.142a1.93 1.93 0 010-2.728z"
-                  fill="#444" />
-                <path
-                  d="M36.19 17.48c1.006-.996 2.706-.34 2.805 1.026l.005.126v10.736c0 .9-.737 1.629-1.646 1.629a1.64 1.64 0 01-1.642-1.507l-.005-.122v-6.805l-8.043 7.957c-1.006.996-2.707.34-2.806-1.026l-.004-.126v-6.805L16.81 30.52a1.66 1.66 0 01-2.224.095l-.105-.095a1.616 1.616 0 01-.096-2.2l.096-.103L25.336 17.48c1.006-.996 2.707-.34 2.806 1.026l.004.126v6.804l8.043-7.956z"
-                  fill="#FFF" />
-              </g>
+        <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" fill-rule="evenodd">
+            <circle fill="#000" cx="28" cy="28" r="28" />
+            <g fill-rule="nonzero">
+              <path
+                d="M15.565 28.565a1.93 1.93 0 012.606-.113l.122.113 10.142 10.142a1.93 1.93 0 01-2.606 2.84l-.122-.112-10.142-10.142a1.93 1.93 0 010-2.728z"
+                fill="#444" />
+              <path
+                d="M36.19 17.48c1.006-.996 2.706-.34 2.805 1.026l.005.126v10.736c0 .9-.737 1.629-1.646 1.629a1.64 1.64 0 01-1.642-1.507l-.005-.122v-6.805l-8.043 7.957c-1.006.996-2.707.34-2.806-1.026l-.004-.126v-6.805L16.81 30.52a1.66 1.66 0 01-2.224.095l-.105-.095a1.616 1.616 0 01-.096-2.2l.096-.103L25.336 17.48c1.006-.996 2.707-.34 2.806 1.026l.004.126v6.804l8.043-7.956z"
+                fill="#FFF" />
             </g>
-          </svg></p>
+          </g>
+        </svg></p>
       </div>
       <div class="cabecera">
         <h2 class="text-center negro">Mastercraft Bamboo Monitor Riser</h2>
         <p class="text-center">A beautiful & handcrafted monitor stand to reduce neck and eye strain.</p>
         <div class="botones">
           <div class="izq">
-            <a class="btn " href="#">Back this project</a>
+            <button class="btn  btn-p" onclick="mostrarAporte()">Back this project</button>
           </div>
           <div id="der" class="der verde">
 
@@ -148,7 +168,7 @@
     <form class="contenedor modal-start invisible" id="form" name="aportes" method="POST" action="#">
       <div class="titulo">
         <h4 class="negro bold t-g">Back this project</h4>
-        <p class="cierre negro t-g bold" onclick="cerrarAporte()">X</p>
+        <p class="cierre gris t-g bold" onclick="cerrarAporte()">X</p>
       </div>
       <p>Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?</p>
       <div class="contenido-modal-start">
@@ -255,15 +275,13 @@
       </p>
       <p class="text-center m-t-3"><a class="btn  btn-p  m-b-3" onclick="cerrarGracias()">Got it!</a></p>
     </div>
-
-
   </main>
-
 
 
 
   <script src="/js/main.js"></script>
   <script src="/js/barra.js"></script>
+  <script src="/js/menumovil.js"></script>
 
 
 </body>
